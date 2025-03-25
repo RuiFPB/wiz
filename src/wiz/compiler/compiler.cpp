@@ -5310,7 +5310,7 @@ namespace wiz {
                         auto& parameter = funcDefinition->parameters[i];
                         auto& argument = arguments[i];
 
-                        if (auto letParameter = parameter->tryGet<Definition::Let>()) {
+                        if (parameter->tryGet<Definition::Let>()) {
                             if (argument->info->context == EvaluationContext::RunTime) {
                                 report->error("argument `" + parameter->name.toString() + "` is a `let` expression, so it cannot accept a run-time expression", argument->location);
                             }
