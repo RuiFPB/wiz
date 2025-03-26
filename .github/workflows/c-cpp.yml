@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: upload-build-artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-output
+        path: bin
+    - name: make tests
+      run: make tests > test-output.txt
+      continue-on-error: true
+    - name: upload-build-artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-output
+        path: test-output.txt
+    
