@@ -15,7 +15,7 @@ jobs:
     - name: make
       run: make -j`nproc`
     - name: upload-build-artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: build-output-gcc
         path: bin
@@ -23,7 +23,7 @@ jobs:
       run: make tests > test-output.txt
       continue-on-error: true
     - name: upload-build-artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: test-output-gcc
         path: test-output.txt
@@ -35,7 +35,7 @@ jobs:
     - name: make
       run: CC=clang CXX=clang++ make -j`nproc`
     - name: upload-build-artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: build-output-clang
         path: bin
@@ -43,7 +43,7 @@ jobs:
       run: make tests > test-output.txt
       continue-on-error: true
     - name: upload-build-artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: test-output-clang
         path: test-output.txt
